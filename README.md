@@ -37,6 +37,8 @@ CPU variant	: 0x0
 CPU part	: 0xd03
 ```
 
+## ARM v8
+
 ```
 linaro@linaro-alip:~/gopath/src/github.com/minio/blake2b-simd$ openssl speed sha256
 Doing sha256 for 3s on 16 size blocks: 3114891 sha256's in 3.00s
@@ -52,4 +54,26 @@ The 'numbers' are in 1000s of bytes per second processed.
 type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
 sha256           16612.75k    59303.25k   177964.46k   354693.12k   502158.68k
 linaro@linaro-alip:~/gopath/src/github.com/minio/blake2b-simd$ 
+```
+
+## MacBook Pro
+
+```
+franks-mbp:~ frankw$ openssl speed sha256
+To get the most accurate results, try to run this
+program when this computer is idle.
+Doing sha256 for 3s on 16 size blocks: 6128519 sha256's in 3.00s
+Doing sha256 for 3s on 64 size blocks: 3608096 sha256's in 3.00s
+Doing sha256 for 3s on 256 size blocks: 1598532 sha256's in 3.00s
+Doing sha256 for 3s on 1024 size blocks: 503032 sha256's in 3.00s
+Doing sha256 for 3s on 8192 size blocks: 67747 sha256's in 3.00s
+OpenSSL 0.9.8zg 14 July 2015
+built on: Aug 22 2015
+options:bn(64,64) md2(int) rc4(ptr,char) des(idx,cisc,16,int) aes(partial) blowfish(idx) 
+compiler: -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O3 -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DMD32_REG_T=int -DOPENSSL_NO_IDEA -DOPENSSL_PIC -DOPENSSL_THREADS -DZLIB -mmacosx-version-min=10.6
+available timing options: TIMEB USE_TOD HZ=100 [sysconf value]
+timing function used: getrusage
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
+sha256           32706.17k    77068.82k   136447.68k   171700.04k   185236.21k
 ```
