@@ -2,6 +2,6 @@
 
 package sha256
 
-func sha256() string {
+func Sha256() string {
 	return "hallo from _noasm"
 }
