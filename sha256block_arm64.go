@@ -41,23 +41,17 @@ func Sha256() string {
 
 	dat, _ := ioutil.ReadFile("/home/linaro/gopath/src/github.com/minio/blake2b-simd/out.bin")
 
-	offset := 0
 	start := time.Now()
 
-	for {
-		if len(dat)-offset < 64 {
-			break
-		}
+	blocks := len(dat) / 64
 
-		block(h[:], dat[offset:], make([]uint8, 256, 256), constants[:])
-
-		offset += 64
+	if blocks > 0 {
+		block(h[:], dat[:64*blocks], make([]uint8, 256, 256), constants[:])
 	}
-
-	l := len(dat) - offset
+	l := len(dat) - blocks*64
 
 	buffer := make([]uint8, 64, 64)
-	copy(buffer, dat[offset:])
+	copy(buffer, dat[64*blocks:])
 
 	i := 0
 	if l < 56 {
