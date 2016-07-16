@@ -42,7 +42,6 @@ TEXT ·block(SB), NOSPLIT, $0
 	SUBS $64, R2
 	BMI  complete
 
-	//	MOVD   constants+72(FP), R3
 	MOVD $·constants(SB), R3
 
 	WORD $0x4cdf2870 // ld1	{v16.4s-v19.4s}, [x3], #64

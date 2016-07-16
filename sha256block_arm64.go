@@ -2,16 +2,10 @@
 
 package sha256
 
-import (
-	"fmt"
-	"io/ioutil"
-	"time"
-)
-
 //go:noescape
 func block(h []uint32, message []uint8)
 
-func Sha256() string {
+func Sha256(dat []byte) {
 
 	h := []uint32{0x6a09e667,
 		0xbb67ae85,
@@ -21,10 +15,6 @@ func Sha256() string {
 		0x9b05688c,
 		0x1f83d9ab,
 		0x5be0cd19}
-
-	dat, _ := ioutil.ReadFile("/home/linaro/gopath/src/github.com/minio/blake2b-simd/out.bin")
-
-	start := time.Now()
 
 	blocks := len(dat) / 64
 
@@ -63,10 +53,4 @@ func Sha256() string {
 	}
 
 	block(h[:], buffer[:])
-
-	elapsed := time.Since(start)
-	fmt.Printf("SHA256 (size=%dM) took %s\n", len(dat)/1024/1024, elapsed)
-
-	fmt.Printf("%08x%08x%08x%08x%08x%08x%08x%08x\n", h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7])
-	return "hallo from arm64"
 }
